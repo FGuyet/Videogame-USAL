@@ -13,11 +13,6 @@ public class Opponent : GameMember {
 	
 	// Update is called once per frame
 	void Update () {
-        moveTo(player);
+        MoveTowards(player.transform.position);
 	}
-
-    void moveTo(GameObject player)
-    {
-        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, player.transform.position, speed * Time.deltaTime);
-    }
 }

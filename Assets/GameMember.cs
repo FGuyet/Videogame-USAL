@@ -14,4 +14,9 @@ public abstract class GameMember : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    protected void MoveTowards(Vector2 target)
+    {
+        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target, speed * Time.deltaTime);
+    }
 }
