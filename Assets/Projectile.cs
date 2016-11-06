@@ -16,4 +16,16 @@ public class Projectile : MonoBehaviour {
             Object.Destroy(gameObject);
         }
 	}
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Opponent")
+        {
+            Debug.Log("Colision Bullet/Opponent");
+            Object.Destroy(gameObject);
+            Object.Destroy(col.gameObject);
+        }
+       
+    }
+
 }

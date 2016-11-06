@@ -12,6 +12,10 @@ public class Opponent : GameMember {
 	
 	// Update is called once per frame
 	void Update () {
-        MoveTowards(player.transform.position);
 	}
+
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+    }
 }

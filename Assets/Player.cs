@@ -82,6 +82,6 @@ public class Player : GameMember {
         //Set canvas, initial position, and speed 
         instance.transform.SetParent(GameObject.Find("GameCanvas").transform);
         instance.transform.position = gameObject.transform.position;
-        instance.GetComponent<Rigidbody2D>().velocity = target * Speed;
+        instance.GetComponent<Rigidbody2D>().velocity = target * Speed *1.5f;
     }
 }
