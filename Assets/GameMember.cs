@@ -2,8 +2,8 @@
 using System.Collections;
 
 public abstract class GameMember : MonoBehaviour {
-    protected int pdv;
-    protected float speed;
+    public int pdv;
+    public float speed;
 
 	// Use this for initialization
 	void Start () {
