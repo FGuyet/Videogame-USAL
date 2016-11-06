@@ -84,5 +84,4 @@ public class Player : GameMember {
         instance.transform.position = gameObject.transform.position;
         instance.GetComponent<Rigidbody2D>().velocity = target * Speed;
     }
-
 }
