@@ -11,11 +11,29 @@ public class Player : GameMember {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("space"))
+        Vector2 movement = new Vector2(0,0);
+
+        if (Input.GetKey("up"))
         {
-            Debug.Log("Move up");
-            move(new Vector2(1,1));
+            movement += new Vector2(0,1);
         }
+
+        if (Input.GetKey("down"))
+        {
+            movement += new Vector2(0, -1);
+        }
+
+        if (Input.GetKey("right"))
+        {
+            movement += new Vector2(1,0);
+        }
+
+        if (Input.GetKey("left"))
+        {
+            movement += new Vector2(-1, 0);
+        }
+
+        move(movement);
     }
 
     void move(Vector2 direction)
