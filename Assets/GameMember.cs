@@ -2,8 +2,8 @@
 using System.Collections;
 
 public abstract class GameMember : MonoBehaviour {
-    public int pdv;
-    public float speed;
+    public int Pdv;
+    public float Speed;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +17,6 @@ public abstract class GameMember : MonoBehaviour {
 
     protected void MoveTowards(Vector2 target)
     {
-        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target, speed * Time.deltaTime);
+        gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, target, Speed * Time.deltaTime);
     }
 }

@@ -8,7 +8,6 @@ public class Opponent : GameMember {
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player);
 	}
 	
 	// Update is called once per frame

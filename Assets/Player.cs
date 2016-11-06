@@ -3,10 +3,14 @@ using System.Collections;
 using System;
 
 public class Player : GameMember {
-	   // Use this for initialization
-	void Start () {
+    float shootingRate = 0.5f;
 
-      //  InvokeRepeating("Shoot", 2.0f, 0.3f);
+    public GameObject projectile;
+
+    // Use this for initialization
+    void Start () {
+
+        InvokeRepeating("Shoot", 1.0f, shootingRate);
     }
 	
 	// Update is called once per frame
@@ -20,26 +24,65 @@ public class Player : GameMember {
 
         Vector2 target = gameObject.transform.position;
 
-        if (Input.GetKey("up"))
+        if (Input.GetKey("z"))
         {
-            target += new Vector2(0, 1) * speed;
+            target += new Vector2(0, 1) * Speed;
         }
 
-        if (Input.GetKey("down"))
+        if (Input.GetKey("s"))
         {
-            target += new Vector2(0, -1) * speed;
+            target += new Vector2(0, -1) * Speed;
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey("d"))
         {
-            target += new Vector2(1, 0) * speed;
+            target += new Vector2(1, 0) * Speed;
         }
 
-        if (Input.GetKey("left"))
+        if (Input.GetKey("q"))
         {
-            target += new Vector2(-1, 0) * speed;
+            target += new Vector2(-1, 0) * Speed;
         }
 
         return target;
     }
+
+    private void Shoot()
+    {
+        //Direction
+        Vector2 target = new Vector2(0, 0);
+
+        if (Input.GetKey("up"))
+        {
+            target += new Vector2(0, 1);
+        }
+
+        if (Input.GetKey("down"))
+        {
+            target += new Vector2(0, -1);
+        }
+
+        if (Input.GetKey("right"))
+        {
+            target += new Vector2(1, 0);
+        }
+
+        if (Input.GetKey("left"))
+        {
+            target += new Vector2(-1, 0);
+        }
+
+        if (target == Vector2.zero)
+        {
+            return;
+        }
+
+        GameObject instance = Instantiate(projectile);
+
+        //Set canvas, initial position, and speed 
+        instance.transform.SetParent(GameObject.Find("GameCanvas").transform);
+        instance.transform.position = gameObject.transform.position;
+        instance.GetComponent<Rigidbody2D>().velocity = target * Speed;
+    }
+
 }
