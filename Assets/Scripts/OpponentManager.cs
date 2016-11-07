@@ -49,7 +49,6 @@ public class OpponentManager : MonoBehaviour {
 
             while (nb != 0)
             {
-                Debug.Log(nb);
                 GameObject opponent = Instantiate(opponentTypes[type]);
                 opponent.SetActive(false);
                 OpponentsToSpawnList.Add(opponent);
@@ -92,8 +91,15 @@ public class OpponentManager : MonoBehaviour {
 
     public void LoadOpponentSettings(Dictionary<string, float> settings)
     {
-        Debug.Log("LoadOpponentSettings");
+        Debug.Log(  "1: " + settings["nbOpponent1"] + 
+                    ", 2: " + settings["nbOpponent2"] +
+                    ", 3: " + settings["nbOpponent3"] +
+                    ", 4: " + settings["nbOpponent4"] +
+                    ", Rate: " + settings["opponentSpawnSpeed"] +
+                    "(x" + settings["opponentSpawnMult"] + ")");
+
         nbOpponentsToSpawn = new int[4] {(int)settings["nbOpponent1"], (int)settings["nbOpponent2"], (int)settings["nbOpponent3"], (int)settings["nbOpponent4"]};
+
         OpponentSpawnSpeed = settings["opponentSpawnSpeed"];
         OpponentSpawnedAtSameTime = (int) settings["opponentSpawnMult"];
 
