@@ -13,23 +13,30 @@ public class OpponentManager : MonoBehaviour {
     public GameObject[] opponentTypes;
 
     public int[] nbOpponentsToSpawn = new int[4] { 10, 10, 10, 10 };
-
     public float OpponentSpawnSpeed = 0.3f;
     public int OpponentSpawnedAtSameTime = 1;
 
-    List<GameObject> OpponentsToSpawnList = new List<GameObject>();
+    static List<GameObject> OpponentsToSpawnList = new List<GameObject>();
 
     // Use this for initialization
     void Start () {
-        SetOpponentsList();
-        InvokeRepeating("SpawnNextOpponent", 2.0f, OpponentSpawnSpeed);
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (OpponentsToSpawnList.Count == 0)
+        {
+            CancelInvoke("SpawnNextOpponent");
+        }
 
-	
-	}
+        if (OpponentsToSpawnList.Count == 0 && GameObject.FindGameObjectsWithTag("Opponent").Length == 0)
+        {
+            Debug.Log("End Level");
+            LevelManager.NextLevel();
+        }
+
+    }
 
     void SetOpponentsList()
     {
@@ -79,6 +86,36 @@ public class OpponentManager : MonoBehaviour {
         if (OpponentsToSpawnList.Count == 0)
         {
             CancelInvoke("SpawnNextOpponent");
+        }
+    }
+
+
+    public void LoadOpponentSettings(Dictionary<string, float> settings)
+    {
+        Debug.Log("LoadOpponentSettings");
+        nbOpponentsToSpawn = new int[4] {(int)settings["nbOpponent1"], (int)settings["nbOpponent2"], (int)settings["nbOpponent3"], (int)settings["nbOpponent4"]};
+        OpponentSpawnSpeed = settings["opponentSpawnSpeed"];
+        OpponentSpawnedAtSameTime = (int) settings["opponentSpawnMult"];
+
+        SetOpponentsList();
+        InvokeRepeating("SpawnNextOpponent", 5.0f, OpponentSpawnSpeed);
+    }
+
+
+    static public void KillAll()
+    {
+        while (OpponentsToSpawnList.Count > 0)
+        {
+            //pop
+            GameObject opponent = OpponentsToSpawnList[0];
+            OpponentsToSpawnList.RemoveAt(0);
+            GameObject.Destroy(opponent);
+        }
+
+        GameObject[] opponents = GameObject.FindGameObjectsWithTag("Opponent");
+        foreach(GameObject op in opponents)
+        {
+            GameObject.Destroy(op);
         }
     }
 }
