@@ -10,12 +10,12 @@ public class Player : GameMember {
     // Use this for initialization
     void Start () {
 
-        InvokeRepeating("Shoot", 1.0f, shootingRate);
+       // InvokeRepeating("Shoot", 1.0f, shootingRate);
     }
 	
 	// Update is called once per frame
 	void Update () {
-
+        Shoot();
         MoveTowards(GetMovementTarget());
     }
 
@@ -52,22 +52,22 @@ public class Player : GameMember {
         //Direction
         Vector2 target = new Vector2(0, 0);
 
-        if (Input.GetKey("up"))
+        if (Input.GetKeyDown("up"))
         {
             target += new Vector2(0, 1);
         }
 
-        if (Input.GetKey("down"))
+        if (Input.GetKeyDown("down"))
         {
             target += new Vector2(0, -1);
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKeyDown("right"))
         {
             target += new Vector2(1, 0);
         }
 
-        if (Input.GetKey("left"))
+        if (Input.GetKeyDown("left"))
         {
             target += new Vector2(-1, 0);
         }
