@@ -24,7 +24,7 @@ public class Player : GameMember {
 
         Vector2 target = gameObject.transform.position;
 
-        if (Input.GetKey("z"))
+        if (Input.GetKey("z")|| Input.GetKey("w"))
         {
             target += new Vector2(0, 1) * Speed;
         }
@@ -39,7 +39,7 @@ public class Player : GameMember {
             target += new Vector2(1, 0) * Speed;
         }
 
-        if (Input.GetKey("q"))
+        if (Input.GetKey("a") || Input.GetKey("q"))
         {
             target += new Vector2(-1, 0) * Speed;
         }
